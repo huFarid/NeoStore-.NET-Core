@@ -1,0 +1,21 @@
+﻿@model Product
+
+<div class="card shadow-sm h-100 d-flex flex-column">
+    <!-- Product Image -->
+    <img src="/images/@(Model.Id).jpg" class="card-img-top img-fluid" alt="Product Image" />
+
+    <div class="card-body d-flex flex-column">
+        <!-- Spacer to push the button to the bottom -->
+        <div class="mt-auto"></div>
+
+        <h5 class="card-title">@Model.Name</h5>
+
+        <p class="card-text">@Model.Description</p>
+
+        <a asp-action="Detail"
+           asp-controller="Home"
+           asp-route-id="@Model.Id"
+           class="btn btn-primary w-75 mx-auto">Details</a>
+    </div>
+
+</div>

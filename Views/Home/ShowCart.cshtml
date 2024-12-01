@@ -1,0 +1,34 @@
+﻿@model CartViewModel
+@{
+    ViewData["Title"] = "ShowCard";
+}
+
+<h1>ShowCard</h1>
+
+<table class="table table table-striped">
+
+    <thead class="thead-dark">
+
+        <tr>
+            <th>Item</th>
+            <th>Quantity</th>
+            <th>Price</th>
+        </tr>
+    </thead>
+
+    @foreach (var item in Model.CartItems)
+    {
+        <tr>
+            <td>@item.Item.Product.Name</td>
+            <td>@item.ItemQuantity</td>
+            <td>@item.getTotalPrice()</td>
+            <td>
+                <a asp-controller="Home"
+                   asp-action="RemoveItem"
+                   asp-route-itemId="@item.Item.ID">Remove</a>
+            </td>
+        </tr>
+    }
+</table>
+
+@* <h5>Total Price: @Model.OrderTotal</h5> *@
