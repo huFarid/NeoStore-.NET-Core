@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using NeoStore.Data;
 using NeoStore.Models;
+using System.ComponentModel.DataAnnotations;
 
 namespace NeoStore.Controllers
 {
@@ -15,9 +16,10 @@ namespace NeoStore.Controllers
         }
 
         
-        [Route("/Group/{Id}")]
-        public IActionResult ShowGroupProducts(int Id)
+        [Route("/Group/{Id}/{name}")]
+        public IActionResult ShowGroupProducts(int Id, string name)
         {
+            ViewData["GroupName"] = name;
             var groupProducts = _context.CategoryToProducts
                 .Where(ca=> ca.CategoryID ==Id)
                 .Include(c => c.Product)

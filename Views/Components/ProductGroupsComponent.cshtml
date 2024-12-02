@@ -7,7 +7,7 @@
     @foreach(var item in Model)
     {
         <li class="list-group-item" href="#" >
-            <a href="/Group/@(item.Id)"> @item.Name</a>
+            <a href="/Group/@(item.Id)/@(item.Name)"> @item.Name</a>
         </li>
     }
 </ul>
