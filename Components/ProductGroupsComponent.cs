@@ -19,9 +19,5 @@ namespace NeoStore.Components
             return View("/Views/Components/ProductGroupsComponent.cshtml", _context.Categories);
         }
 
-
-
-
-
     }
 }
