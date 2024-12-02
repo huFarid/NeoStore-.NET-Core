@@ -11,7 +11,7 @@
 
         public List<CartItem> CartItems { get; set; }
 
-        public decimal OrderTotalPrice;
+        public decimal OrderTotalPrice {  get; set; }
         
     }
 }

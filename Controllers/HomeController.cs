@@ -28,7 +28,7 @@ namespace NeoStore.Controllers
             var categories = _context.Products.Where(p => p.Id == Id)
                  .SelectMany(p => p.CategoryToProducts)
                  .Select(CaToP => CaToP.Category).
-                 ToList();
+                  ToList();
 
 
             var detailViewModel = new DetailViewModel()
@@ -37,9 +37,15 @@ namespace NeoStore.Controllers
                 Categories = categories
 
             };
-
             return View(detailViewModel);
+        }
 
+        public IActionResult RemoveCart(int Id)
+        {
+
+            _cart.RemoveItem(Id);
+
+            return RedirectToAction("ShowCart");
         }
 
         public IActionResult AddToCart(int ItemID)
@@ -66,11 +72,11 @@ namespace NeoStore.Controllers
         {
             CartViewModel cartViewModel = new CartViewModel()
             {
-                CartItems = _cart.CartItems
+                CartItems = _cart.CartItems,
+                OrderTotalPrice = _cart.CartItems.Sum(i => i.getTotalPrice())
+
 
             };
-
-
             return View(cartViewModel);
         }
 
@@ -88,3 +94,4 @@ namespace NeoStore.Controllers
         }
     }
 }
+

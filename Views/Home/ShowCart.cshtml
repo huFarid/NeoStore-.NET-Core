@@ -16,19 +16,19 @@
         </tr>
     </thead>
 
-    @foreach (var item in Model.CartItems)
+    @foreach (var cartItem in Model.CartItems)
     {
         <tr>
-            <td>@item.Item.Product.Name</td>
-            <td>@item.ItemQuantity</td>
-            <td>@item.getTotalPrice()</td>
+            <td>@cartItem.Item.Product.Name</td>
+            <td>@cartItem.ItemQuantity</td>
+            <td>@cartItem.getTotalPrice()</td>
             <td>
                 <a asp-controller="Home"
-                   asp-action="RemoveItem"
-                   asp-route-itemId="@item.Item.ID">Remove</a>
+                   asp-action="RemoveCart"
+                   asp-route-Id="@(cartItem.Item.ID)">Remove</a>
             </td>
         </tr>
     }
 </table>
 
-@* <h5>Total Price: @Model.OrderTotal</h5> *@
+<h5>Total Price: @Model.OrderTotalPrice</h5>
