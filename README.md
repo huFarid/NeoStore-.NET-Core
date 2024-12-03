@@ -24,7 +24,7 @@ This project is a **work in progress** and aims to showcase a modern e-commerce 
 
 ### Frontend
 - **Razor Views**
-- **HTML5**, **CSS3**, **JavaScript**
+- **HTML**, **CSS**, **JavaScript**
 - **Bootstrap**
 
 ---
