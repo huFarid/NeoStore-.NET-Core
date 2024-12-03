@@ -1,4 +1,4 @@
-# NeoStore Showcase Project
+# NeoStore
 
 Welcome to the **NeoStore** repository! 🚀  
 This project is a **work in progress** and aims to showcase a modern e-commerce website built with **ASP.NET Core**.
