@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using NeoStore.Data;
+using NeoStore.Data.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,7 +9,7 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddDbContext<EshopContext>(options =>
     options.UseSqlServer("Data Source= .; Initial Catalog = NeoStore_Db; Integrated Security = true; TrustServerCertificate = true;"));
-
+builder.Services.AddScoped<IGroupRepository, GroupRepository>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

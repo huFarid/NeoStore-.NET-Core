@@ -1,18 +1,24 @@
-﻿@* @model IEnumerable<products> *@
+﻿@using NeoStore.Data.Repositories;
+@inject IGroupRepository _GroupRepository;
+
+@* @model IEnumerable<products> *@
 @*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
 }
 
-<ul>
-    @foreach(var item in Model)
-    {
-        <div class="col-md-4 col-lg-3 mb-4">
-            <partial name ="_ProductBox"  model="@item"></partial>
-        </div>
-    }
-</ul>
+<li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" href="#" id="dropdown10" role="button" data-bs-toggle="dropdown" aria-expanded="false">Categories</a>
+    <div class="dropdown-menu" aria-labelledby="dropdown10">
+
+        @foreach (var item in _GroupRepository.GetCategories())
+        {
+            <a class="dropdown-item" href="/Group/@item.Id/@item.Name">@item.Name</a>
+        }
+    </div>
+</li>
+
 
 
 
