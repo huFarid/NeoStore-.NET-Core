@@ -8,7 +8,6 @@
             CartItems = new List<CartItem>();
           
         }
-
         public List<CartItem> CartItems { get; set; }
 
         public decimal OrderTotalPrice {  get; set; }

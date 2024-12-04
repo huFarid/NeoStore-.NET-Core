@@ -11,9 +11,7 @@ namespace NeoStore.Components
         public ProductGroupsComponent(EshopContext context)
         {
             _context = context;
-
         }
-
         public async Task<IViewComponentResult> InvokeAsync()
         {
             return View("/Views/Components/ProductGroupsComponent.cshtml", _context.Categories);
