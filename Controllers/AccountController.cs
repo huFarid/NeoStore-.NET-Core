@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using NeoStore.Models;
 
 namespace NeoStore.Controllers
 {
@@ -6,12 +7,18 @@ namespace NeoStore.Controllers
     {
         public IActionResult Register()
         {
+           
+
             return View();
         }
 
-        
-        public IActionResult RegisterConfimed()
+        [HttpPost]
+        public IActionResult Register(AccountViewModel account)
         {
+            if (!ModelState.IsValid)
+            {
+                return View(account);
+            }
             return View();
         }
     }
