@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Category>;
+﻿@* @model IEnumerable<Category>;
 
 <h3>Product Categories</h3>
 
@@ -8,6 +8,24 @@
     {
         <li class="list-group-item" href="#" >
             <a href="/Group/@(item.Id)/@(item.Name)"> @item.Name</a>
+        </li>
+    }
+</ul>
+ *@
+
+
+
+@model IEnumerable<Category>;
+
+<h3 class="text-dark mb-3">Product Categories</h3>
+
+<ul class="list-group">
+    @foreach (var item in Model)
+    {
+        <li class="list-group-item">
+            <a href="/Group/@(item.Id)/@(item.Name)" class="text-decoration-none text-primary">
+                @item.Name
+            </a>
         </li>
     }
 </ul>

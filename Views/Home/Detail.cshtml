@@ -24,13 +24,14 @@
 
                         <div class="mt-3">
                             <h5>Categories:</h5>
-                            <ul class="list-group">
+                            <ul>
                                 @foreach (var category in Model.Categories)
                                 {
-                                    <li class="list-group-item">@category.Name</li>
+                                    <li>@category.Name</li>
                                 }
                             </ul>
                         </div>
+
 
                         <div class="mt-4">
                             <form asp-action="Detail">
