@@ -7,8 +7,6 @@ namespace NeoStore.Controllers
     {
         public IActionResult Register()
         {
-           
-
             return View();
         }
 
