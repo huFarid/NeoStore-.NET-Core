@@ -6,8 +6,9 @@ namespace NeoStore.Data.Repositories
     
     public interface IUserRepository
     {
-        bool HasUser(string username);
+        bool HasUserByEmail(string email);
         void AddUser(User user);
+        User GetUserForLogin(string email, string password);
     }
 
     public class UserRepository : IUserRepository
@@ -24,11 +25,20 @@ namespace NeoStore.Data.Repositories
             _context.SaveChanges();
         }
 
-        public bool HasUser(string email)
+        public User GetUserForLogin(string email, string password)
+        {  
+            return _context.Users.SingleOrDefault(u=> u.Email == email && u.Password == password);
+            
+        }
+
+        public bool HasUserByEmail(string email)
         {
-            if( _context.Users.Any(u => u.Email == email))
+            if( _context.Users.Any(u => u.Email == email.ToLower()))
             { return true; }
             return false;
         }
+
+
+
     }
 }

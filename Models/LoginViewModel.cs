@@ -2,29 +2,17 @@
 
 namespace NeoStore.Models
 {
-    public class AccountViewModel
+    public class LoginViewModel
     {
         [Required]
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
 
         [Required]
-        [MaxLength(300)]
         [DataType(DataType.Password)]
         public string Password { get; set; }
 
-        [Required]
-        [MaxLength(300)]
-        [DataType(DataType.Password)]
-        [Compare("Password")]
-        public string ConfirmPassword { get; set; }
+        public bool RememberMe { get; set; } = false;
 
     }
-
-   
-
-
-
-
-
 }
