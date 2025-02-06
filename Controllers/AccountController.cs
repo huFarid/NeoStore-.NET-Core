@@ -5,6 +5,7 @@ using Microsoft.Identity.Client;
 using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.BlazorIdentity.Pages;
 using NeoStore.Data.Repositories;
 using NeoStore.Models;
+using NuGet.Protocol.Plugins;
 using System.Security.Claims;
 
 namespace NeoStore.Controllers
@@ -85,14 +86,30 @@ namespace NeoStore.Controllers
             };
 
             var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+
             var principal = new ClaimsPrincipal(identity);
+
             var properties = new AuthenticationProperties
             {
                 IsPersistent = loginViewModel.RememberMe
             };
 
             HttpContext.SignInAsync(principal, properties);
+
             return Redirect("/");
+
+
+
+            //var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+            //var principal = new ClaimsPrincipal(identity);
+            //var properties = new AuthenticationProperties
+            //{
+            //    IsPersistent = loginViewModel.RememberMe
+            //};
+
+
+            //HttpContext.SignInAsync(principal, properties);
+            //return Redirect("/");
         }
 
         #endregion

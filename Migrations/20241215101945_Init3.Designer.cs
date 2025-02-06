@@ -12,8 +12,8 @@ using NeoStore.Data;
 namespace NeoStore.Migrations
 {
     [DbContext(typeof(EshopContext))]
-    [Migration("20241209094548_UserIdKey")]
-    partial class UserIdKey
+    [Migration("20241215101945_Init3")]
+    partial class Init3
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -193,6 +193,60 @@ namespace NeoStore.Migrations
                         });
                 });
 
+            modelBuilder.Entity("NeoStore.Models.Order", b =>
+                {
+                    b.Property<int>("OrderId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("OrderId"));
+
+                    b.Property<bool>("IsFinalized")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("OrderDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("OrderId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Orders");
+                });
+
+            modelBuilder.Entity("NeoStore.Models.OrderDetail", b =>
+                {
+                    b.Property<int>("DetailId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("DetailId"));
+
+                    b.Property<int>("Count")
+                        .HasColumnType("int");
+
+                    b.Property<int>("OrderId")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("OrderPrice")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("ProductID")
+                        .HasColumnType("int");
+
+                    b.HasKey("DetailId");
+
+                    b.HasIndex("OrderId");
+
+                    b.HasIndex("ProductID");
+
+                    b.ToTable("OrderDetails");
+                });
+
             modelBuilder.Entity("NeoStore.Models.Product", b =>
                 {
                     b.Property<int>("Id")
@@ -281,7 +335,6 @@ namespace NeoStore.Migrations
             modelBuilder.Entity("NeoStore.Models.User", b =>
                 {
                     b.Property<string>("UserId")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Email")
@@ -323,6 +376,36 @@ namespace NeoStore.Migrations
                     b.Navigation("Product");
                 });
 
+            modelBuilder.Entity("NeoStore.Models.Order", b =>
+                {
+                    b.HasOne("NeoStore.Models.User", "User")
+                        .WithMany("Orders")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("NeoStore.Models.OrderDetail", b =>
+                {
+                    b.HasOne("NeoStore.Models.Order", "Order")
+                        .WithMany("Details")
+                        .HasForeignKey("OrderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("NeoStore.Models.Product", "Product")
+                        .WithMany("OrderDetails")
+                        .HasForeignKey("ProductID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Order");
+
+                    b.Navigation("Product");
+                });
+
             modelBuilder.Entity("NeoStore.Models.Product", b =>
                 {
                     b.HasOne("NeoStore.Models.Item", "Item")
@@ -345,9 +428,21 @@ namespace NeoStore.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("NeoStore.Models.Order", b =>
+                {
+                    b.Navigation("Details");
+                });
+
             modelBuilder.Entity("NeoStore.Models.Product", b =>
                 {
                     b.Navigation("CategoryToProducts");
+
+                    b.Navigation("OrderDetails");
+                });
+
+            modelBuilder.Entity("NeoStore.Models.User", b =>
+                {
+                    b.Navigation("Orders");
                 });
 #pragma warning restore 612, 618
         }

@@ -6,7 +6,7 @@ namespace NeoStore.Models
     public class User
     {
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        //[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public string UserId { get; set; }
 
         [Required]
@@ -19,5 +19,7 @@ namespace NeoStore.Models
         public DateTime RegistrationTime { get; set; }
 
         public bool IsAdmin {  get; set; }
+
+        public List<Order> Orders { get; set; }
     }
 }

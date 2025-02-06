@@ -1,8 +1,11 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using NeoStore.Data;
+using NeoStore.Migrations;
 using NeoStore.Models;
 using System.Diagnostics;
+using System.Security.Claims;
 
 namespace NeoStore.Controllers
 {
@@ -48,6 +51,8 @@ namespace NeoStore.Controllers
             return RedirectToAction("ShowCart");
         }
 
+
+
         public IActionResult AddToCart(int ItemID)
         {
             var product = _context.Products.Include(p => p.Item).SingleOrDefault(p => p.ItemId == ItemID);
@@ -67,6 +72,78 @@ namespace NeoStore.Controllers
             }
             return RedirectToAction("ShowCart");
         }
+
+
+
+
+
+
+        //[Authorize]
+        //public IActionResult AddToCart(int ItemID)
+        //{
+        //    var product = _context.Products.Include(p => p.Item).SingleOrDefault(p => p.ItemId == ItemID);
+
+
+        //    if (product != null)
+        //    {
+        //        //string  userID = User.FindFirstValue(ClaimTypes.NameIdentifier);
+        //        //var userIdTest = int.TryParse(userID, out var id) ? id : 0;
+
+
+        //         string userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+        //        //int id = int.Parse(User.FindFirstValue(claimType.NameIdentifie))
+        //        var order = _context.Orders.FirstOrDefault(o=> o.UserId == userId  && !o.IsFinalized); 
+
+        //        if (order != null)
+        //        {
+        //            var orderDetail = _context.OrderDetails.FirstOrDefault(detail=> detail.OrderId == order.OrderId  && detail.ProductID == product.Id);
+        //            if (orderDetail != null)
+        //            {
+        //                orderDetail.Count += 1;
+
+        //            }
+        //            else
+        //            {
+        //                _context.OrderDetails.Add(new OrderDetail()
+        //                {
+        //                    Count = 1,
+        //                    OrderId = order.OrderId,
+        //                    ProductID = product.Id,
+        //                    OrderPrice = product.Item.Price,
+        //                });
+
+        //            }
+
+
+        //        }
+        //        else
+        //        {
+        //            order = new Order()
+        //            {
+        //                IsFinalized = false,
+        //                OrderDate = DateTime.Now,
+        //                UserId = userId
+        //            };
+        //            _context.Orders.Add(order);
+        //            _context.SaveChanges();
+        //            var orderDetails = new OrderDetail()
+        //            {
+        //                OrderId = order.OrderId,
+        //                ProductID = product.Id,
+        //                OrderPrice = product.Item.Price,
+        //                Count = 1
+
+
+        //            };
+        //            _context.SaveChanges();
+
+                    
+
+        //        }
+        //    }
+        //    return RedirectToAction("ShowCart");
+        //}
 
         public IActionResult ShowCart()
         {

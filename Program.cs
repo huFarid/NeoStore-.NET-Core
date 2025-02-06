@@ -2,14 +2,33 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
 using NeoStore.Data;
 using NeoStore.Data.Repositories;
+using System;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddRazorPages();
 
-builder.Services.AddDbContext<EshopContext>(options =>
+var environment = builder.Environment.EnvironmentName;
+
+if (environment == "Development")
+{
+    builder.Services.AddDbContext<EshopContext>(options =>
     options.UseSqlServer("Data Source= .; Initial Catalog = NeoStore_Db; Integrated Security = true; TrustServerCertificate = true;"));
+}
+else
+{
+    // Use PostgreSQL for Railway production
+    var connectionString = builder.Configuration.GetConnectionString("PostgreSQLConnection");
+    builder.Services.AddDbContext<EshopContext>(options =>
+        options.UseNpgsql(connectionString));
+}
+
+
+
+
+
 builder.Services.AddScoped<IGroupRepository, GroupRepository>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 
@@ -43,9 +62,10 @@ app.UseStaticFiles();
 
 app.UseRouting();
 app.UseAuthentication();
-app.UseAuthentication();
+//app.UseAuthentication();
 
 app.UseAuthorization();
+app.MapRazorPages();
 
 app.MapControllerRoute(
     name: "default",
