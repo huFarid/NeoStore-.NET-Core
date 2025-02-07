@@ -12,18 +12,11 @@ builder.Services.AddRazorPages();
 
 var environment = builder.Environment.EnvironmentName;
 
-if (environment == "Development")
-{
-    builder.Services.AddDbContext<EshopContext>(options =>
-    options.UseSqlServer("Data Source= .; Initial Catalog = NeoStore_Db; Integrated Security = true; TrustServerCertificate = true;"));
-}
-else
-{
-    // Use PostgreSQL for Railway production
-    var connectionString = builder.Configuration.GetConnectionString("PostgreSQLConnection");
-    builder.Services.AddDbContext<EshopContext>(options =>
-        options.UseNpgsql(connectionString));
-}
+
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+builder.Services.AddDbContext<EshopContext>(options =>
+    options.UseNpgsql(connectionString));
+
 
 
 
