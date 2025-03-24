@@ -1,4 +1,25 @@
 ﻿@page
 @model NeoStore.Pages.Admin.IndexModel
 @{
+    ViewData["Title"] = "Index";
 }
+
+<h1>List of items</h1>
+<hr />
+
+<table>
+    <thead>
+        <tr>
+            <th>Image</th>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Instructions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Products)
+        {
+            <tr>item</tr>
+        }
+    </tbody>
+</table>
