@@ -7,6 +7,7 @@
 <h1>List of items</h1>
 <hr />
 
+
 <table>
     <thead>
         <tr>
@@ -17,9 +18,22 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model.Products)
+        @foreach (var product in Model.Products)
         {
-            <tr>item</tr>
+            <tr>
+                <td>
+                    <img src="~/images/@(product.Id).jpg" 
+                         style="max-width: 50px; border: 3px solid blue"/>
+                </td>
+                <td>@product.Name</td>
+                <td>@product.Item.Price</td>
+                <td>
+                  <a href="">Edit</a>
+                  <a href="">Remove</a>
+
+                </td>
+                
+            </tr>
         }
     </tbody>
 </table>
