@@ -42,10 +42,11 @@ namespace NeoStore.Controllers
 
             var newUser = new User()
             {
+                UserId = Guid.NewGuid().ToString(),
                 Email = account.Email,
                 Password = account.Password,
                 IsAdmin = false,
-                RegistrationTime = DateTime.Now
+                RegistrationTime = DateTime.UtcNow
             };
 
             _userRepository.AddUser(newUser);

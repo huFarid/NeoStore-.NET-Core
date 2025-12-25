@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace NeoStore.Migrations
 {
     [DbContext(typeof(EshopContext))]
-    [Migration("20250207134850_InitPostgres2")]
-    partial class InitPostgres2
+    [Migration("20251225111802_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
