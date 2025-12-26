@@ -18,11 +18,11 @@ namespace NeoStore.Pages.Admin
 
         }
 
-
         public IEnumerable<Product> Products { get; set; }
         public void OnGet()
         {
             Products = _context.Products.Include(p=>p.Item);
+            
         }
         public void OnPost()
         {
