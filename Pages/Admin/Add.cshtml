@@ -1,7 +1,35 @@
 ﻿@page
 @model NeoStore.Pages.Admin.AddModel
 @{
-    ViewData["Title"] = "Add";
+    ViewData["Title"] = "Add Product";
 }
 
-<p>Add new items</p>
+<h1>Add Product</h1>
+<hr />
+
+<form method="post" enctype="multipart/form-data">
+    <label asp-for="Product.Name"></label>
+    <input asp-for="Product.Name" />
+    <span asp-validation-for="Product.Name"></span>
+    <br />
+
+    <label asp-for="Product.Description"></label>
+    <input asp-for="Product.Description"/>
+    <span asp-validation-for="Product.Description"></span>
+    <br />
+
+    <label asp-for="Product.Price"></label>
+    <input asp-for="Product.Price" />
+    <span asp-validation-for="Product.Price"></span>
+    <br />
+
+    <label asp-for="Product.Price"></label>
+    <input asp-for="Product.Price" />
+    <span asp-validation-for="Product.Price"></span>
+    <br />
+
+    
+
+</form>
+
+

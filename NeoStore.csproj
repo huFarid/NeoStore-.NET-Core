@@ -7,10 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Remove="Pages\Admin\Add.cshtml" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Folder Include="Migrations\" />
     <Folder Include="wwwroot\images\" />
   </ItemGroup>
@@ -33,18 +29,6 @@
     </PackageReference>
     <PackageReference Include="NUnit.Extension.NUnitProjectLoader" Version="3.8.0" />
     <PackageReference Include="NUnit3TestAdapter" Version="4.6.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <UpToDateCheckInput Remove="Pages\Admin\Add.cshtml" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <_ContentIncludedByDefault Remove="Pages\Admin\Add.cshtml" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="Pages\Admin\Add.cshtml" />
   </ItemGroup>
 
 </Project>

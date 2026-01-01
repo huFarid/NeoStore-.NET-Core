@@ -12,51 +12,6 @@
 </p>
 
 
-<table>
-    <thead>
-        <tr>
-            <th></th>
-        </tr>
-
-    </thead>
-    <tbody>
-        @foreach(var product in Model.Products)
-        {
-            <tr>
-                <distributed-cache-image src="~/images/@(product.Id).jpg"
-                                         style="max-width: 50px; border: 3px solid blue" />
-                <td>@product.Name</td>
-                <td>@product.Item.Price</td>
-                <td>@product.Name</td>
-            </tr>
-        }
-        
-
-    </tbody>
-
-
-
-    <tr>
-        <td></td>
-    </tr>
-</table>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 <table>
     <thead>
