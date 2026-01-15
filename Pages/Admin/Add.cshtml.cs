@@ -24,11 +24,11 @@ namespace NeoStore.Pages.Admin
 
         }
 
-       public void OnPost() { 
+       public IActionResult OnPost() { 
         
             if(!ModelState.IsValid)
             {
-                return;
+                return Page();
             }
 
             var newProduct = new Product()
@@ -41,12 +41,19 @@ namespace NeoStore.Pages.Admin
                     QuantityInStock = Product.QuantityInStock
                     
                 }
+                
             };
+            
+              
+            
 
-
-
-            _context.Products.Add(newProduct);
+            _context.Add(newProduct);
             _context.SaveChanges();
+            newProduct.ItemId = newProduct.Id;
+            _context.SaveChanges();
+
+
+            return RedirectToPage("Index"); 
         }
 
         
