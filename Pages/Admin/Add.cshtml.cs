@@ -1,7 +1,11 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.Exchange.WebServices.Data;
+using Microsoft.Identity.Client;
 using NeoStore.Data;
 using NeoStore.Models;
+using NUnit.Framework.Internal.Execution;
+using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 
 namespace NeoStore.Pages.Admin
@@ -35,7 +39,7 @@ namespace NeoStore.Pages.Admin
             {
                 Name = Product.Name,
                 Description = Product.Description,
-                Item = new Item()
+                Item = new Models.Item()
                 {
                     Price = Product.Price,
                     QuantityInStock = Product.QuantityInStock
@@ -52,6 +56,20 @@ namespace NeoStore.Pages.Admin
             newProduct.ItemId = newProduct.Id;
             _context.SaveChanges();
 
+
+            if (Product.Picture?.Length > 0)
+            {
+                string filePath = Path.Combine(Directory.GetCurrentDirectory(),
+                    "wwwroot", "images",
+                    newProduct.Id.ToString()+".jpg");
+
+                using (var fileStream = new FileStream(filePath, FileMode.Create))
+                {
+                   Product.Picture.CopyTo(fileStream);
+                }
+
+
+            }
 
             return RedirectToPage("Index"); 
         }
