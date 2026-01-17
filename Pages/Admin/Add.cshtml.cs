@@ -67,8 +67,6 @@ namespace NeoStore.Pages.Admin
                 {
                    Product.Picture.CopyTo(fileStream);
                 }
-
-
             }
 
             return RedirectToPage("Index"); 
